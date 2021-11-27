@@ -14,23 +14,30 @@ type Screen struct {
     name string
     screenType ScreenType
     theaterID string
-    movieID string
+    currentShow Show
     Seats   []Seat
 }
 
-func NewScreen(name string, screenType ScreenType, theaterID string, movieId string, seat []Seat) *Screen {
+func NewScreen(name string, screenType ScreenType, theaterID string, seat []Seat) *Screen {
     return &Screen{
         BaseModel:  NewBaseModel(),
         name:       name,
         screenType: screenType,
         theaterID:  theaterID,
-        movieID:    movieId,
         Seats:      seat,
     }
 }
 
-func (s Screen) MovieID() string {
-    return s.movieID
+func (s *Screen) SetCurrentShow(show Show)  {
+    s.currentShow = show
+}
+
+func (s Screen) CurrentShow() Show {
+    return s.currentShow
+}
+
+func (s Screen) GetCurrentMovie() string  {
+    return s.currentShow.GetMovieId()
 }
 
 

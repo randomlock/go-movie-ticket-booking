@@ -17,3 +17,7 @@ func NewShow(startTime time.Time, duration time.Duration, movieID string, screen
 func (s Show) IsAvailable() bool {
     return time.Now().Sub(s.startTime) > 0
 }
+
+func (s Show) GetMovieId() string {
+    return s.movieID
+}
